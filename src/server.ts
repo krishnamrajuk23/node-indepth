@@ -1,7 +1,9 @@
-import express from 'express';
-import router from './router';
 import morgan from 'morgan';
+import express from 'express';
 import cors from 'cors';
+
+import { createNewUser, singIn } from './handlers/user';
+import router from './router';
 import { protect } from './modules/auth';
 
 const app = express();
@@ -23,6 +25,9 @@ app.get('/', (req, res) => {
  * @param '/api' - here we mounting the path to router
  */
 app.use('/api', protect, router);
+
+app.post('/user', createNewUser);
+app.post('/singIn', singIn)
 
 export default app;
 
