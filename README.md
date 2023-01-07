@@ -8,4 +8,4 @@ npx prisma studio
 
 ## Database  is hosted in render
 
-Render 
+Render - krishnamkollu -gmail
