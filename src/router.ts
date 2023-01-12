@@ -1,4 +1,6 @@
 import { Router } from 'express';
+import { body, validationResult } from 'express-validator';
+import handlerInputErrors from './middleware/handler-input-error';
 
 const router = Router();
 
@@ -7,9 +9,13 @@ router.get('/product', (req, res) => {
   res.status(200);
   res.json({ message: "hello product" });
 })
-router.get('/product/:id',  (req,res) => { })
-router.post('/product',  (req,res) => { })
-router.put('/product/:id',  (req,res) => { })
+router.get('/product/:id', (req, res) => { });
+router.post('/product', body('name').isString(), handlerInputErrors, (req, res) => {
+  res.json({message: 'successfully product created'});
+})
+router.put('/product/:id', body('name').isString(), handlerInputErrors, (req, res) => {
+  res.json({message: 'successfully product updated'});
+})
 router.delete('/product/:id', (req, res) => { })
 
 /* Updates */
